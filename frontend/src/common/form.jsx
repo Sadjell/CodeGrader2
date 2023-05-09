@@ -34,6 +34,7 @@ class Form extends Component {
     if (errors) return;
 
     this.doSubmit();
+    console.log("in here");
   };
 
   handleChange = ({ currentTarget: input }) => {
