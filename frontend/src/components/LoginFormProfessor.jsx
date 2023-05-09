@@ -2,6 +2,8 @@ import React from "react";
 import Joi from "joi-browser";
 import Form from "../common/form";
 import auth from "../services/authService";
+import { Button } from 'react-bootstrap';
+
 
 class LoginFormProfessor extends Form {
   state = {
@@ -48,10 +50,10 @@ class LoginFormProfessor extends Form {
       <section className="glasscard">
         <div>
           <h1>Login</h1>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.doSubmit}>
             {this.renderInput("email", "Email")}
             {this.renderInput("password", "Password", "password")}
-            {this.renderButton("Login")}
+            <Button type="submit">Student Login</Button>
           </form>
         </div>
       </section>
