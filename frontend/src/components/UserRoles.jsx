@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import Joi from "joi";
 import { Link } from "react-router-dom";
+import Container from 'react-bootstrap/Container';
+import {Card} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 class UserRoles extends Component {
   constructor(props) {
@@ -9,6 +12,41 @@ class UserRoles extends Component {
   state = {};
   render() {
     return (
+
+      <div>
+
+        <div className="col d-flex justify-content-center">
+           <Container id='clientButtonContainer' fluid>
+              <Card id='card1' className="text-center mx-auto" style={{ background: '#0098C3', width: '60rem', margin:'5px', marginTop:'1%',color:'whitesmoke', fontFamily: 'Bitter' }}>
+                 <Card.Body>
+                    <Card.Title style={{fontSize:'30px'}}>
+
+                    <Link to={"/studentLogin"}>
+                    <Button variant='outline-light' size='lg' style={{minWidth: "350px", fontSize: "28px"}}>Student Login</Button>
+                    </Link>
+                      
+                    </Card.Title>
+                 </Card.Body>
+              </Card>
+
+             <Card id='card3' className="text-center mx-auto" style={{ background: '#d2492a', width: '60rem', margin:'5px', color:'whitesmoke', fontFamily: 'Bitter'}}>
+               <Card.Body>
+                 <Card.Title style={{fontSize:'30px'}}>
+                    <Link to={"/professorLogin"}>
+                      <Button variant='outline-light' size='lg' style={{width: "350px", fontSize: "28px"}}>Professor Login</Button>
+                    </Link>
+                    
+                 </Card.Title>
+               </Card.Body>
+             </Card>
+           </Container>
+         </div>
+
+      </div>
+
+      
+
+      /*
       <section className="glasscard">
         <div className="title" style={{ marginBottom: "3rem" }}>
           <h3 style={{ color: "black", marginRight: "2rem" }}>
@@ -77,6 +115,7 @@ class UserRoles extends Component {
           </div>
         </div>
       </section>
+      */
     );
   }
 }
