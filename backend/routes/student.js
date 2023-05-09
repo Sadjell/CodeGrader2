@@ -5,7 +5,7 @@ var Verify = require("./verify"); // verfication
 const bcrypt = require("bcrypt");
 /** 1- declare mongoose and student **/
 const mongoose = require("mongoose");
-const student = require("../models/student");
+const Student = require("../models/student");
 const courses = require("../models/courses");
 
 studentRouter
@@ -13,7 +13,7 @@ studentRouter
   .get((req, res, next) => {
     //chained into route(), no semi-colon after the all implementation
     // 2- implement get to return all students
-    student.find({}, (err, students) => {
+    Student.find({}, (err, students) => {
       if (err) throw err;
 
       res.json(students);
@@ -22,7 +22,7 @@ studentRouter
 
   .post((req, res, next) => {
     // 3- implement post request to insert a student into database
-    student.create(req.body, (err, student) => {
+    Student.create(req.body, (err, student) => {
       if (err) throw err;
 
       console.log("Student created");
@@ -32,7 +32,7 @@ studentRouter
   });
 
   studentRouter.get("/", Verify.verifyAdmin, function (req, res, next) {
-  student.find({}, function (err, students) {
+  Student.find({}, function (err, students) {
     if (err) {
       throw err;
     }
@@ -41,8 +41,8 @@ studentRouter
 });
 // 3- register a new Student on end poitn register, info is sent as a json object
 studentRouter.post("/register", async function (req, res) {
-  student.register(
-    new student({ name: req.body.name, email: req.body.email }),
+  Student.register(
+    new Student({ name: req.body.name, email: req.body.email }),
     req.body.password,
     function (err, student) {
       if (err) return res.status(500).json({ err: err });
@@ -113,7 +113,7 @@ studentRouter
   .put((req, res, next) => {
     // 5- implement post request to update a specific student
     //This replaces everything about a student, perhaps make it more specific in the future
-    student.findByIdAndUpdate(
+    Student.findByIdAndUpdate(
       req.params.studentId,
       { $set: req.body },
       { new: true },
@@ -126,14 +126,14 @@ studentRouter
 
   .delete((req, res, next) => {
     // 6- delete specific student in the collection
-    student.findByIdAndRemove(req.params.studentId, (err, student) => {
+    Student.findByIdAndRemove(req.params.studentId, (err, student) => {
       if (err) throw err;
       res.json(student);
     });
   });
 
 studentRouter.route("/:studentId/courses").get((req, res, next) => {
-  student.findById(req.params.studentId, (err, student) => {
+  Student.findById(req.params.studentId, (err, student) => {
     if (err) throw err;
     //return the ids of all the courses the student is in
     res.json(student._coursesId);
@@ -144,7 +144,7 @@ studentRouter
   .route("/:studentId/courses/:courseId")
   //add a new course id to the list of course ids a student is in
   .put((req, res, next) => {
-    student.findById(req.params.studentId, (err, student) => {
+    Student.findById(req.params.studentId, (err, student) => {
       if (err) throw err;
       student._coursesId.push(req.params.courseId);
       student.save((err, student) => {
@@ -167,7 +167,7 @@ studentRouter
 
   //remove a specific course id from the list of ids
   .delete((req, res, next) => {
-    student.findById(req.params.studentId, (err, student) => {
+    Student.findById(req.params.studentId, (err, student) => {
       for (var i = student._coursesId.length - 1; i >= 0; i--) {
         if (student._coursesId[i] == req.params.courseId) {
           student._coursesId[i].remove(); //remove a single course
