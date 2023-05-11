@@ -36,4 +36,8 @@
       transform: rotate(360deg);
     }
   }
+
+  .Button:hover {
+    opacity:.4
+  }
   

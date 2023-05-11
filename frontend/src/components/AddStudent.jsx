@@ -14,7 +14,7 @@ class AddStudent extends Component {
     return (
       <div>
         <ProfessorNavbar />
-        <section className="glasscard">
+        <section className="glasscard container text-center" style={{width:'40%'}}>
           <form>
             <div className="form-group" style={{ paddingBottom: "2rem" }}>
               <h4>Add Student</h4>
@@ -26,38 +26,38 @@ class AddStudent extends Component {
               </label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control container text-center"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
                 placeholder="Enter Student Name"
-                style={{ width: "15rem", marginLeft: "8rem" }}
+                style={{ width: "15rem" }}
               />
               <label for="email" style={{ paddingTop: "2rem" }}>
                 Student Email
               </label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control container text-center"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
                 placeholder="Enter Student Email"
-                style={{ width: "15rem", marginLeft: "8rem" }}
+                style={{ width: "15rem" }}
               />
               <label for="password" style={{ paddingTop: "2rem" }}>
                 Student Password
               </label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control container text-center"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
                 placeholder="Enter Student Password"
-                style={{ width: "15rem", marginLeft: "8rem" }}
+                style={{ width: "15rem" }}
               />
             </div>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-dark btn-lg">
               <NavLink className="nav-link" to="/professorCourses">
-                Submit
+                Add Student
               </NavLink>
             </button>
           </form>

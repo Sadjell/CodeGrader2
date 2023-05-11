@@ -3,6 +3,7 @@ import Joi from "joi-browser";
 import Form from "../common/form";
 import auth from "../services/authService";
 import { Button } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 
 class LoginFormProfessor extends Form {
@@ -47,13 +48,25 @@ class LoginFormProfessor extends Form {
 
   render() {
     return (
-      <section className="glasscard">
+      <section className="glasscard container text-center" style={{width:'40%'}}>
         <div>
-          <h1>Login</h1>
+        <h4 style={{paddingTop:'3%'}}>Professor Login</h4>
           <form onSubmit={this.doSubmit}>
+          <h6 style={{ marginTop: "2rem", paddingBottom:'5%' }}>
+                Sign in to your account to continue.
+              </h6>
             {this.renderInput("email", "Email")}
+            <div style={{paddingTop:'5%'}}></div>
             {this.renderInput("password", "Password", "password")}
-            <Button type="submit">Student Login</Button>
+            <Link to={"/professorCourses"}>
+                <button
+                  className="btn btn-dark btn-lg"
+                  style={{ marginTop: "4rem", width:'50%' }}
+                  disabled={this.state.disableSubmit}
+                >
+                  Login
+                </button>
+              </Link>
           </form>
         </div>
       </section>

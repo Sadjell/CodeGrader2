@@ -64,7 +64,7 @@ class LoginFormStudent extends Component {
 
   render() {
     return (
-      <section className="glasscard">
+      <section className="glasscard container text-center" style={{width:'40%'}}>
         <div
           className="container"
           style={{
@@ -75,11 +75,11 @@ class LoginFormStudent extends Component {
         >
           <form onSubmit={this.handleSubmit}>
             <div className="form-group">
-              <h4>Student Login</h4>
+              <h4 style={{paddingTop:'3%'}}>Student Login</h4>
               <h6 style={{ marginTop: "2rem" }}>
                 Sign in to your account to continue.
               </h6>
-              <label htmlFor="email">Email Address</label>
+              <label htmlFor="email" style={{paddingTop:'5%'}}>Email Address</label>
               <input
                 value={this.state.account.email}
                 onChange={this.handleChange}
@@ -97,7 +97,7 @@ class LoginFormStudent extends Component {
               )}
             </div>
             <div className="form-group">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password" style={{paddingTop:'5%'}}>Password</label>
               <input
                 id="password"
                 value={this.state.account.password}
@@ -117,8 +117,8 @@ class LoginFormStudent extends Component {
             <div className="form-group">
               <Link to={"/studentCourses"}>
                 <button
-                  className="btn btn-primary"
-                  style={{ marginTop: "2rem" }}
+                  className="btn btn-dark btn-lg"
+                  style={{ marginTop: "4rem", width:'50%' }}
                   disabled={this.state.disableSubmit}
                 >
                   Login

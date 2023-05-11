@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import {Card} from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
+import './styles/userRoles.css';
 
 class UserRoles extends Component {
   constructor(props) {
@@ -12,26 +13,45 @@ class UserRoles extends Component {
   state = {};
   render() {
     return (
-
-      <div>
+      <div style={{height:'100%',width:'100%'}} className="" id="UserRolesScreen">
+        <div className="container text-center" style={{alignContent:'center', gravity:'center', paddingTop:'12%',width:'30%'}}>
+        <h1 style={{padding:'5%'}}>Code Grader 2.0</h1>
+        <Card variant="outlined" className='border border-4 rounded-2' style={{borderColor:'#F58216'}}>
+        <div id="loginForm" className='form-container text-center' style={{ height:'100%', opacity:'100%'}}>
+            <div className="student-login-button" style={{padding: "7%"}}>
+              <Link to={'/studentLogin'}>
+              <Button
+                type="submit"
+                className="btn btn-dark btn-lg"
+                style={{width:'70%',backgroundColor: 'grey'}}
+                >Student Login</Button>
+              </Link>
+            </div>
+            <div className="professor-login-button" style={{padding: "7%"}}>
+              <Link to={'/professorLogin'}>
+              <Button
+                type="submit"
+                className="btn btn-dark btn-lg"
+                style={{width:'70%',backgroundColor: 'grey'}}
+                >Professor Login</Button>
+              </Link>
+            </div>
+        </div>
+        </Card>
+        </div>
+      </div>
+  )
+      /*<div>
 
         <div className="col d-flex justify-content-center">
            <Container id='clientButtonContainer' fluid>
-              <Card id='card1' className="text-center mx-auto" style={{ background: '#0098C3', width: '60rem', margin:'5px', marginTop:'1%',color:'whitesmoke', fontFamily: 'Bitter' }}>
-                 <Card.Body>
-                    <Card.Title style={{fontSize:'30px'}}>
-
-                    <Link to={"/studentLogin"}>
-                    <Button variant='outline-light' size='lg' style={{minWidth: "350px", fontSize: "28px"}}>Student Login</Button>
-                    </Link>
-                      
-                    </Card.Title>
-                 </Card.Body>
-              </Card>
-
+              
              <Card id='card3' className="text-center mx-auto" style={{ background: '#d2492a', width: '60rem', margin:'5px', color:'whitesmoke', fontFamily: 'Bitter'}}>
                <Card.Body>
                  <Card.Title style={{fontSize:'30px'}}>
+                 <Link to={"/studentLogin"}>
+                    <Button variant='outline-light' size='lg' style={{minWidth: "350px", fontSize: "28px"}}>Student Login</Button>
+                    </Link>
                     <Link to={"/professorLogin"}>
                       <Button variant='outline-light' size='lg' style={{width: "350px", fontSize: "28px"}}>Professor Login</Button>
                     </Link>
@@ -116,7 +136,6 @@ class UserRoles extends Component {
         </div>
       </section>
       */
-    );
   }
 }
 

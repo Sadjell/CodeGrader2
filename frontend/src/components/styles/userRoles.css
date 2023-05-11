@@ -1,4 +1,4 @@
-* {
+* /*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -8,12 +8,12 @@
     margin-top: 3rem;
     margin-left: 3rem;
   }
-  
+*/  
   body {
-    background: url(images/laptopcoffee.jpeg);
+    background-color: rgb(82, 138, 174) !important;
     background-size: 105%;
   }
-  
+/*  
   main {
     display: flex;
     align-items: center;
@@ -74,8 +74,12 @@
     font-weight: bold;
     margin-top: 10px;
     cursor: pointer;
+  }*/
+
+  .btn:hover {
+    opacity: .6;
   }
-  
+/* 
   .cards {
     margin: 0rem;
     flex-direction: colum;
@@ -99,5 +103,5 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+  }*/
   

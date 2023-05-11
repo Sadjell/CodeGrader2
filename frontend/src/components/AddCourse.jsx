@@ -27,14 +27,14 @@ class AddCourse extends Component {
     return (
       <React.Fragment>
         <ProfessorNavbar />
-        <section className="glasscard">
+        <section className="glasscard container text-center" style={{width:'40%'}}>
           <form>
             <div className="form-group">
               <h4>Add Course</h4>
               <h6 style={{ marginTop: "2rem" }}>
                 Please input the Course Name and Course Title to be added.
               </h6>
-              <label>Course Name</label>
+              <label style={{paddingTop:'5%'}}>Course Name</label>
               <input
                 defaultValue={this.state.newCourse.courseName}
                 type="text"
@@ -56,11 +56,11 @@ class AddCourse extends Component {
             {/* <Link to="/professorCourses"> */}
             <button
               type="submit"
-              className="btn btn-primary"
+              className="btn btn-dark btn-lg"
               onClick={this.handleSubmit}
-              style={{ marginTop: "3rem" }}
+              style={{ marginTop: "4rem" }}
             >
-              Submit
+              Add Course
             </button>
             {/* </Link> */}
           </form>
