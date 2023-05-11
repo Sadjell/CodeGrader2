@@ -96,7 +96,7 @@ coursesRouter
   .put((req, res, next) => {
     courses.findById(req.params.courseId, (err, course) => {
       if (err) throw err;
-      course._assignmentsId.push(req.params.assignmentsId);
+      course._assignmentsId.push(req.params.assignmentId);
       course.save((err, course) => {
         if (err) throw err;
         console.log("Assignment Id added");

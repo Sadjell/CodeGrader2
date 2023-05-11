@@ -42,7 +42,7 @@ studentRouter
 // 3- register a new Student on end poitn register, info is sent as a json object
 studentRouter.post("/register", async function (req, res) {
   Student.register(
-    new Student({ name: req.body.name, email: req.body.email }),
+    new Student({ name: req.body.name, email: req.body.email}),
     req.body.password,
     function (err, student) {
       if (err) return res.status(500).json({ err: err });

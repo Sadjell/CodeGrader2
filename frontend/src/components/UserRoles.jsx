@@ -17,23 +17,23 @@ class UserRoles extends Component {
 
         <div className="col d-flex justify-content-center">
            <Container id='clientButtonContainer' fluid>
-              <Card id='card1' className="text-center mx-auto" style={{ background: '#0098C3', width: '60rem', margin:'5px', marginTop:'1%',color:'whitesmoke', fontFamily: 'Bitter' }}>
+              <Card id='card1' className="text-center mx-auto" >
                  <Card.Body>
                     <Card.Title style={{fontSize:'30px'}}>
 
                     <Link to={"/studentLogin"}>
-                    <Button variant='outline-light' size='lg' style={{minWidth: "350px", fontSize: "28px"}}>Student Login</Button>
+                    <Button variant='outline-light' size='lg' style={{width: "350px", fontSize: "28px", color: "black"}}>Student Login</Button>
                     </Link>
                       
                     </Card.Title>
                  </Card.Body>
               </Card>
 
-             <Card id='card3' className="text-center mx-auto" style={{ background: '#d2492a', width: '60rem', margin:'5px', color:'whitesmoke', fontFamily: 'Bitter'}}>
+             <Card id='card3' className="text-center mx-auto" >
                <Card.Body>
                  <Card.Title style={{fontSize:'30px'}}>
                     <Link to={"/professorLogin"}>
-                      <Button variant='outline-light' size='lg' style={{width: "350px", fontSize: "28px"}}>Professor Login</Button>
+                      <Button variant='outline-light' size='lg' style={{width: "350px", fontSize: "28px", color: "black"}}>Professor Login</Button>
                     </Link>
                     
                  </Card.Title>

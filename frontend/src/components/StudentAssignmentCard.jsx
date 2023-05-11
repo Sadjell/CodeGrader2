@@ -15,7 +15,7 @@ class StudentAssignmentCard extends Component {
         <div className="container">
           <div className="row">
             <h3 style={{ marginTop: "4rem" }}>
-              There are {assignments.length} assignments!
+              
             </h3>
           </div>
           <div className="row" style={{ marginTop: "4rem" }}>

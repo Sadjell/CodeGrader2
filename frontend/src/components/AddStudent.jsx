@@ -17,12 +17,11 @@ class AddStudent extends Component {
         <section className="glasscard">
           <form>
             <div className="form-group" style={{ paddingBottom: "2rem" }}>
-              <h4>Add Student</h4>
+              <h4>Create New Student</h4>
               <h6 style={{ marginTop: "2rem" }}>
-                Please input the following information to add a student.
               </h6>
               <label for="name" style={{ paddingTop: "2rem" }}>
-                Student Name
+                Name
               </label>
               <input
                 type="text"
@@ -33,7 +32,7 @@ class AddStudent extends Component {
                 style={{ width: "15rem", marginLeft: "8rem" }}
               />
               <label for="email" style={{ paddingTop: "2rem" }}>
-                Student Email
+                Email
               </label>
               <input
                 type="text"
@@ -44,7 +43,7 @@ class AddStudent extends Component {
                 style={{ width: "15rem", marginLeft: "8rem" }}
               />
               <label for="password" style={{ paddingTop: "2rem" }}>
-                Student Password
+                Password
               </label>
               <input
                 type="text"

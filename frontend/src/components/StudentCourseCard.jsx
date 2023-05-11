@@ -14,7 +14,7 @@ class StudentCourseCard extends Component {
         <div className="container">
           <div className="row">
             <h3 style={{ marginTop: "4rem" }}>
-              There are {courses.length} courses!
+              
             </h3>
           </div>
           <div className="row" style={{ marginTop: "4rem" }}>

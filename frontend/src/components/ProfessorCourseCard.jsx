@@ -14,7 +14,7 @@ class ProfessorCourseCard extends Component {
         <div className="container">
           <div className="row">
             <h3 style={{ marginTop: "4rem" }}>
-              There are {courses.length} courses!
+              
             </h3>
           </div>
           <div className="row" style={{ marginTop: "4rem" }}>
@@ -31,6 +31,7 @@ class ProfessorCourseCard extends Component {
                     <h4 className="card-text">{course.courseTitle}</h4>
                   </div>
                   <div className="card-body">
+                    <div className="row">
                     <Link to={`/professorCourses/${course._id}`}>
                       <button
                         onClick={() => ""}
@@ -40,6 +41,7 @@ class ProfessorCourseCard extends Component {
                         View Course
                       </button>
                     </Link>
+                    </div>
                     <button
                       onClick={() => {
                         this.props.onDelete(course);
@@ -47,7 +49,7 @@ class ProfessorCourseCard extends Component {
                       className="btn btn-primary"
                       style={{ marginLeft: "1rem" }}
                     >
-                      Delete
+                      Delete Course
                     </button>
                   </div>
                 </div>

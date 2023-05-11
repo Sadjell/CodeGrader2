@@ -9,16 +9,6 @@ var studentSchema = new Schema(
       type: String,
       required: true,
     },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    password: {
-      type: String,
-      required: true,
-      unique: true,
-    },
     _coursesId: {
       type: [String],
       required: false,
@@ -34,6 +24,6 @@ var studentSchema = new Schema(
 
 // Export schema as a model
 //var Student = mongoose.model("Student", studentSchema);
-studentSchema.plugin(passportLocalMongoose); //adds the user hash and salt fileds to store the user name, the hashed password and salted value
+studentSchema.plugin(passportLocalMongoose, { usernameField: "email" }); //adds the user hash and salt fileds to store the user name, the hashed password and salted value
 
 module.exports = mongoose.model("Student", studentSchema);

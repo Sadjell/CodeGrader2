@@ -5,7 +5,7 @@ var path = require("path");
 var logger = require("morgan");
 var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
-
+const session = require("express-session");
 var index = require("./routes/index");
 var courses = require("./routes/courses");
 var student = require("./routes/student");
@@ -42,6 +42,14 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 app.use(logger("dev"));
 app.use(cors());
+app.use(
+  session({
+    //store: new MemoryStore({ checkPeriod: 86400000 }),
+    secret: "#@%#&^$^$%@$^$&%#$%@#$%$^%&$%^#$%@#$%#E%#%@$FEErfgr3g#%GT%536c53cc6%5%tv%4y4hrgrggrgrgf4n",
+    resave: false,
+    saveUninitialized: false,
+  }),
+);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());

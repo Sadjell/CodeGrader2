@@ -75,9 +75,8 @@ class LoginFormStudent extends Component {
         >
           <form onSubmit={this.handleSubmit}>
             <div className="form-group">
-              <h4>Student Login</h4>
+              <h4>Login</h4>
               <h6 style={{ marginTop: "2rem" }}>
-                Sign in to your account to continue.
               </h6>
               <label htmlFor="email">Email Address</label>
               <input

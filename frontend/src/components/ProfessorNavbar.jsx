@@ -14,7 +14,7 @@ class ProfessorNavbar extends Component {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <a className="navbar-brand" style={{ paddingLeft: "1rem" }} href="#">
-          Professor Name
+          
         </a>
         <button
           className="navbar-toggler"

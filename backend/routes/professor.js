@@ -7,6 +7,8 @@ const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 const Professor = require("../models/professor");
 
+//window = window || {}
+
 professorRouter
   .route("/")
   .all((req, res, next) => {
@@ -75,6 +77,7 @@ professorRouter.post("/login", (req, res, next) => {
           }
           console.log("DB professor:", dbProfessor);
           var token = Verify.getToken(dbProfessor);
+          //window.location = "/professorCourses"
           res.status(200);
           res.send(token);
           //res.header("Auth", token);

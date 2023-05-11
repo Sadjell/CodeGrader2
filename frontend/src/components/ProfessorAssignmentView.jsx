@@ -47,7 +47,7 @@ const ProfessorAssignmentView = () => {
     //get assignment from each of the assignment ids from the course
     async function fetchAssignments() {
       assignmentIds.forEach((id) => {
-        console.log("helloooo u");
+        //console.log("helloooo u");
         const data = getCourseAssignment(courseId, id);
         console.log(data);
         assignments.push(data);
@@ -59,7 +59,7 @@ const ProfessorAssignmentView = () => {
     //fetchAssignments();
   }, []);
   assignmentIds.forEach((id) => {
-    console.log("helloooo u");
+    //console.log("helloooo u");
     const data = getCourseAssignment(courseId, id);
     console.log(data);
     assignments.push(data);
@@ -96,7 +96,7 @@ const ProfessorAssignmentView = () => {
   return (
     <React.Fragment>
       <ProfessorNavbar />
-      <h1>This is: {courseId}</h1>
+      <h1>{course.courseName}</h1>
       <ProfessorAssignmentCard
         assignments={assignments}
         courseId={courseId}

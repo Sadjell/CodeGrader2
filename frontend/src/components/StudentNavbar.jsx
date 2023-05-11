@@ -14,7 +14,7 @@ class StudentNavbar extends Component {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <a className="navbar-brand" style={{ paddingLeft: "1rem" }} href="#">
-          Student Name
+          
         </a>
         <button
           className="navbar-toggler"
@@ -32,11 +32,6 @@ class StudentNavbar extends Component {
             <li className="nav-item active">
               <NavLink className="nav-link" to="/studentCourses">
                 View Courses
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/requestCourse">
-                Request Course
               </NavLink>
             </li>
             <li className="nav-item">

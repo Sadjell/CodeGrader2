@@ -19,7 +19,6 @@ class AddCourse extends Component {
   };
   //ToDo implementation
   handleSubmit() {
-    console.log("hiiiiii");
     saveCourse(this.state.newCourse);
   }
 
@@ -32,7 +31,6 @@ class AddCourse extends Component {
             <div className="form-group">
               <h4>Add Course</h4>
               <h6 style={{ marginTop: "2rem" }}>
-                Please input the Course Name and Course Title to be added.
               </h6>
               <label>Course Name</label>
               <input
@@ -41,7 +39,7 @@ class AddCourse extends Component {
                 className="form-control"
                 id="courseName"
                 aria-describedby="emailHelp"
-                placeholder="Enter Course Name (e.g. MA229)"
+                placeholder="Course Name"
               />
               <label style={{ marginTop: "2rem" }}>Course Title</label>
               <input
@@ -50,7 +48,7 @@ class AddCourse extends Component {
                 className="form-control"
                 id="courseDescription"
                 aria-describedby="emailHelp"
-                placeholder="Enter Course Title (e.g. Linear Algebra)"
+                placeholder="Course Title"
               />
             </div>
             {/* <Link to="/professorCourses"> */}

@@ -16,24 +16,15 @@ class LoginFormProfessor extends Form {
     password: Joi.string().required().label("Password"),
   };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    const errors = this.validate();
-    this.setState({ errors: errors || {} });
-    this.setState((preValue) => {
-      // Get the previous value of state
-      return {
-        ...preValue, // use the spread operator to get all the previous values of state
-        errors: errors || {},
-      };
-    });
-  };
+  window = window || {}
+
   doSubmit = async () => {
     try {
       const { data } = this.state;
       console.log(data.email, data.password);
       await auth.login(data.email, data.password);
       // const { state } = this.props.location;
+
       window.location = "/professorCourses"; // state ? state.from.pathname : "/";
       console.log("in here");
     } catch (ex) {
@@ -50,10 +41,10 @@ class LoginFormProfessor extends Form {
       <section className="glasscard">
         <div>
           <h1>Login</h1>
-          <form onSubmit={this.doSubmit}>
+          <form onSubmit={this.handleSubmit}>
             {this.renderInput("email", "Email")}
             {this.renderInput("password", "Password", "password")}
-            <Button type="submit">Student Login</Button>
+            <Button type="submit">Log In</Button>
           </form>
         </div>
       </section>
