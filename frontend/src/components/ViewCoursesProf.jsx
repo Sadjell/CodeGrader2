@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { getCourses, deleteCourse, saveCourse } from "../services/courseService";
 import auth from "../services/authService";
-import ProfessorNavbar from "./ProfessorNavbar";
+import ProfessorNavbar from "./ProfNavbar";
 import { Link } from "react-router-dom";
-import ProfessorCourseCard from "./ProfessorCourseCard";
+import ProfessorCourseCard from "./ViewCourseProf";
 
 const ProfessorCourses = () => {
   const [courses, setCourses] = useState([]);

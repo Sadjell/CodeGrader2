@@ -31,7 +31,7 @@ assignmentsRouter
   .route("/:assignmentsId")
   .get((req, res, next) => {
     // 4- find by id
-    assignments.findById(req.params.assignmentsId, (err, assignments) => {
+    assignments.findById(`${req.params.assignmentsId}`, (err, assignments) => {
       console.log(err);
       console.log(assignments);
       if (err) throw err;
@@ -43,7 +43,7 @@ assignmentsRouter
     // 5- implement post request to update a specific assignments
     //This replaces everything about a assignments, perhaps make it more specific in the future
     assignments.findByIdAndUpdate(
-      req.params.assignmentsId,
+      `${req.params.assignmentsId}`,
       { $set: req.body },
       { new: true },
       (err, assignments) => {
@@ -56,7 +56,7 @@ assignmentsRouter
   .delete((req, res, next) => {
     // 6- delete specific assignment in the collection
     assignments.findByIdAndRemove(
-      req.params.assignmentsId,
+      `${req.params.assignmentsId}`,
       (err, assignments) => {
         if (err) throw err;
         res.json(assignments);
@@ -65,10 +65,10 @@ assignmentsRouter
   });
 
 assignmentsRouter.route("/:assignmentsId/submissions").get((req, res, next) => {
-  assignments.findById(req.params.assignmentsId, (err, assignments) => {
+  assignments.findById(`${req.params.assignmentsId}`, (err, assignments) => {
     if (err) throw err;
     //return the ids of all the submissions in the assignment
-    res.json(assignments._submissionsId);
+    res.json(assignments.submissionsId);
   });
 });
 
@@ -76,9 +76,9 @@ assignmentsRouter
   .route("/:assignmentsId/submissions/:submissionsId")
   //add a new submission id to the list of submission ids an assignments has
   .put((req, res, next) => {
-    assignments.findById(req.params.assignmentsId, (err, assignments) => {
+    assignments.findById(`${req.params.assignmentsId}`, (err, assignments) => {
       if (err) throw err;
-      assignments._submissionsId.push(req.params.submissionsId);
+      assignments.submissionsId.push(req.params.submissionsId);
       assignments.save((err, assignments) => {
         if (err) throw err;
         console.log("Submission Id added");
@@ -89,12 +89,15 @@ assignmentsRouter
 
   //remove a specific submission id from the list of ids
   .delete((req, res, next) => {
-    assignments.findById(req.params.assignmentsId, (err, assignments) => {
-      for (var i = assignments._submissionsId.length - 1; i >= 0; i--) {
-        if (assignments._submissionsId[i] == req.params.submissionsId) {
-          assignments._submissionsId[i].remove(); //remove a single assignments
+    assignments.findById(`${req.params.assignmentsId}`, (err, assignment) => {
+      if (err) throw err;
+      var newSubmissions = [];
+      for (var submission of assignment.submissionsId) {
+        if (submission != `${req.params.submissionsId}`) {
+          newSubmissions.push(submission);
         }
       }
+      assignment.submissionsId = newSubmissions;
       assignments.save((err, resp) => {
         if (err) throw err;
         res.json(resp);

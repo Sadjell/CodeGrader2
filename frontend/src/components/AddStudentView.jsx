@@ -2,7 +2,7 @@
 // TO-DO: hrefs (all navigations)
 import React, { Component } from "react";
 import Joi from "joi";
-import ProfessorNavbar from "./ProfessorNavbar";
+import ProfessorNavbar from "./ProfNavbar";
 import { NavLink } from "react-router-dom";
 
 class AddStudent extends Component {

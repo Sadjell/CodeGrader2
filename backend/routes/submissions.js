@@ -28,7 +28,7 @@ submissionsRouter.route('/')
 submissionsRouter.route('/:submissionsId')
 .get((req,res,next)=>{
     // 4- find by id 
-    submissions.findById(req.params.submissionsId, (err, submissions) => {
+    submissions.findById(`${req.params.submissionsId}`, (err, submissions) => {
           if (err) throw err;
           res.json(submissions)
       })
@@ -37,7 +37,7 @@ submissionsRouter.route('/:submissionsId')
 .put((req, res, next)=>{
   // 5- implement post request to update a specific submissions
   //This replaces everything about a submissions, perhaps make it more specific in the future
-  submissions.findByIdAndUpdate(req.params.submissionsId, 
+  submissions.findByIdAndUpdate(`${req.params.submissionsId}`, 
       {$set:req.body}, 
       {new: true}, 
       (err, submissions) => {
@@ -49,7 +49,7 @@ submissionsRouter.route('/:submissionsId')
 
 .delete((req, res, next)=>{
     // 6- delete specific submission in the collection
-    submissions.findByIdAndRemove(req.params.submissionsId,  (err, submissions)=>{        
+    submissions.findByIdAndRemove(`${req.params.submissionsId}`,  (err, submissions)=>{        
               if (err) throw err;
               res.json(submissions);
       });
@@ -57,19 +57,19 @@ submissionsRouter.route('/:submissionsId')
 
 submissionsRouter.route('/:submissionsId/assignment')
 .get((req, res, next)=>{
-    submissions.findById(req.params.submissionsId,  (err, submissions)=>{
+    submissions.findById(`${req.params.submissionsId}`,  (err, submissions)=>{
         if (err) throw err;
       //return the id of  the assignment the submission is for
-        res.json(submissions._assignmentId)
+        res.json(submissions.assignmentId)
     });
 })
 
 submissionsRouter.route('/:submissionsId/student')
 .get((req, res, next)=>{
-    submissions.findById(req.params.submissionsId,  (err, submissions)=>{
+    submissions.findById(`${req.params.submissionsId}`,  (err, submissions)=>{
         if (err) throw err;
       //return the id of the student the submission is for
-        res.json(submissions._studentId)
+        res.json(submissions.studentId)
     });
 })
 

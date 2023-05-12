@@ -22,9 +22,10 @@ const StudentRequestCourse = () => {
   return (
     // TO-DO: Course Cards
     <React.Fragment>
-      <StudentNavbar />
-      <StudentRequestCourse courses={courses} />
+      
     </React.Fragment>
+    //<StudentNavbar />
+    //<StudentRequestCourse courses={courses} />
   );
 };
 

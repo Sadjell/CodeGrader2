@@ -23,7 +23,7 @@ import {
 import { useParams } from "react-router-dom";
 import Joi from "joi";
 import ProfessorNavbar from "./ProfNavbar";
-import ProfessorAssignmentCard from "./professorAssignmentCard";
+import ProfessorAssignmentCard from "./ViewAssignmentProf";
 import { Link } from "react-router-dom";
 
 const ProfessorAssignmentView = () => {

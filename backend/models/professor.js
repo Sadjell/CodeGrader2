@@ -6,7 +6,7 @@ var passportLocalMongoose = require("passport-local-mongoose");
 var professorSchema = new Schema(
   {
     name: {type: String, required: true},
-    coursesId: {type: [String], required: false},
+    coursesId: {type: [mongoose.Schema.Types.ObjectId], required: false},
     isAdmin: {type: Boolean, default: true,}
   },
   //{ timestamps: true }

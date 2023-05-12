@@ -19,8 +19,8 @@ import {
 } from "../services/assignmentService";
 import { useParams } from "react-router-dom";
 import Joi from "joi";
-import StudentNavbar from "./StudentNavbar";
-import StudentAssignmentCard from "./StudentAssignmentCard";
+import StudentNavbar from "./StudNavbar";
+import StudentAssignmentCard from "./ViewAssignmentStud";
 import { Link } from "react-router-dom";
 
 const StudentAssignmentView = () => {

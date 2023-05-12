@@ -6,9 +6,10 @@ const bcrypt = require("bcrypt");
 /** 1- declare mongoose and courses **/
 const mongoose = require("mongoose");
 const Professor = require("../models/professor");
+const Courses = require("../models/courses");
 
 professorRouter
-  .route("/")
+  .route("/") //GOOD
   .all((req, res, next) => {
     console.log(req.body);
     next();
@@ -22,7 +23,7 @@ professorRouter
       res.json(professors);
     });
   });
-
+//GOOD
 professorRouter.post("/register", async function (req, res) {
   console.log(req.body);
   Professor.register(
@@ -94,9 +95,9 @@ professorRouter.get("/logout", function (req, res) {
 
 professorRouter
   .route("/:professorId")
-  .get((req, res, next) => {
+  .get((req, res, next) => {//GOOD
     // 4- find by id
-    Professor.findById(req.params.professorId, (err, professor) => {
+    Professor.findById(`${req.params.professorId}`, (err, professor) => {
       if (err) throw err;
       res.json(professor);
     });
@@ -106,7 +107,7 @@ professorRouter
     // 5- implement post request to update a specific professor
     //This replaces everything about a professor, perhaps make it more specific in the future
     Professor.findByIdAndUpdate(
-      req.params.professorId,
+      `${req.params.professorId}`,
       { $set: req.body },
       { new: true },
       (err, professor) => {
@@ -116,19 +117,19 @@ professorRouter
     );
   })
 
-  .delete((req, res, next) => {
+  .delete((req, res, next) => {//GOOD
     // 6- delete specific course in the collection
-    Professor.findByIdAndRemove(req.params.professorId, (err, professor) => {
+    Professor.findByIdAndRemove(`${req.params.professorId}`, (err, professor) => {
       if (err) throw err;
       res.json(professor);
     });
   });
 
 professorRouter.route("/:professorId/courses").get((req, res, next) => {
-  Professor.findById(req.params.professorId, (err, professor) => {
+  Professor.findById(`${req.params.professorId}`, (err, professor) => {
     if (err) throw err;
     //return the ids of all the courses the professor is in
-    res.json(professor._coursesId);
+    res.json(professor.coursesId);
   });
 });
 
@@ -136,10 +137,10 @@ professorRouter
   .route("/:professorId/courses/:courseId")
   //add a new course id to the list of course ids a professor is in
   .put((req, res, next) => {
-    Professor.findById(req.params.professorId, (err, professor) => {
+    Professor.findById(`${req.params.professorId}`, (err, professor) => {
       if (err) throw err;
-      professor._coursesId.push(req.params.courseId);
-      Professor.save((err, professor) => {
+      professor.coursesId.push(`${req.params.courseId}`);
+      professor.save((err, professor) => {
         if (err) throw err;
         console.log("Course Id added");
         res.json(professor);
@@ -149,13 +150,16 @@ professorRouter
 
   //remove a specific course id from the list of ids
   .delete((req, res, next) => {
-    Professor.findById(req.params.professorId, (err, professor) => {
-      for (var i = Professor._coursesId.length - 1; i >= 0; i--) {
-        if (Professor._coursesId[i] == req.params.courseId) {
-          Professor._coursesId[i].remove(); //remove a single professor
+    Professor.findById(`${req.params.professorId}`, (err, professor) => {
+      if (err) throw err;
+      var newCourses = [];
+      for (var course of professor.coursesId) {
+        if (course != `${req.params.courseId}`) {
+          newCourses.push(course);
         }
       }
-      Professor.save((err, resp) => {
+      professor.coursesId = newCourses;
+      professor.save((err, resp) => {
         if (err) throw err;
         res.json(resp);
       });

@@ -10,7 +10,7 @@ const courses = require("../models/courses");
 
 studentRouter
   .route("/")
-  .get((req, res, next) => {
+  .get((req, res, next) => {//GOOD
     //chained into route(), no semi-colon after the all implementation
     // 2- implement get to return all students
     Student.find({}, (err, students) => {
@@ -20,7 +20,7 @@ studentRouter
     });
   })
 
-  .post((req, res, next) => {
+  /*.post((req, res, next) => {
     // 3- implement post request to insert a student into database
     Student.create(req.body, (err, student) => {
       if (err) throw err;
@@ -29,7 +29,7 @@ studentRouter
       let id = student._id;
       res.send("Student added with id " + id);
     });
-  });
+  });*/
 
   studentRouter.get("/", Verify.verifyAdmin, function (req, res, next) {
   Student.find({}, function (err, students) {
@@ -42,9 +42,10 @@ studentRouter
 // 3- register a new Student on end poitn register, info is sent as a json object
 studentRouter.post("/register", async function (req, res) {
   Student.register(
-    new Student({ name: req.body.name, email: req.body.email }),
+    new Student({ name: req.body.name, email: req.body.email, coursesId: [] }),
     req.body.password,
     function (err, student) {
+      console.log(err);
       if (err) return res.status(500).json({ err: err });
       passport.authenticate("local")(req, res, function () {
         var token = Verify.getToken(student);
@@ -104,7 +105,7 @@ studentRouter
   .route("/:studentId")
   .get((req, res, next) => {
     // 4- find by id
-    student.findById(req.params.studentId, (err, student) => {
+    Student.findById(`${req.params.studentId}`, (err, student) => {
       if (err) throw err;
       res.json(student);
     });
@@ -114,7 +115,7 @@ studentRouter
     // 5- implement post request to update a specific student
     //This replaces everything about a student, perhaps make it more specific in the future
     Student.findByIdAndUpdate(
-      req.params.studentId,
+      `${req.params.studentId}`,
       { $set: req.body },
       { new: true },
       (err, student) => {
@@ -126,17 +127,17 @@ studentRouter
 
   .delete((req, res, next) => {
     // 6- delete specific student in the collection
-    Student.findByIdAndRemove(req.params.studentId, (err, student) => {
+    Student.findByIdAndRemove(`${req.params.studentId}`, (err, student) => {
       if (err) throw err;
       res.json(student);
     });
   });
 
 studentRouter.route("/:studentId/courses").get((req, res, next) => {
-  Student.findById(req.params.studentId, (err, student) => {
+  Student.findById(`${req.params.studentId}`, (err, student) => {
     if (err) throw err;
     //return the ids of all the courses the student is in
-    res.json(student._coursesId);
+    res.json(student.coursesId);
   });
 });
 
@@ -144,9 +145,9 @@ studentRouter
   .route("/:studentId/courses/:courseId")
   //add a new course id to the list of course ids a student is in
   .put((req, res, next) => {
-    Student.findById(req.params.studentId, (err, student) => {
+    Student.findById(`${req.params.studentId}`, (err, student) => {
       if (err) throw err;
-      student._coursesId.push(req.params.courseId);
+      student.coursesId.push(`${req.params.courseId}`);
       student.save((err, student) => {
         if (err) throw err;
         console.log("Course Id added");
@@ -167,12 +168,15 @@ studentRouter
 
   //remove a specific course id from the list of ids
   .delete((req, res, next) => {
-    Student.findById(req.params.studentId, (err, student) => {
-      for (var i = student._coursesId.length - 1; i >= 0; i--) {
-        if (student._coursesId[i] == req.params.courseId) {
-          student._coursesId[i].remove(); //remove a single course
+    Student.findById(`${req.params.studentId}`, (err, student) => {
+      if (err) throw err;
+      var newCourses = [];
+      for (var course of student.coursesId) {
+        if (course != `${req.params.courseId}`) {
+          newCourses.push(course);
         }
       }
+      student.coursesId = newCourses;
       student.save((err, resp) => {
         if (err) throw err;
         res.json(resp);

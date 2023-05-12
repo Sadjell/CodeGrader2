@@ -10,13 +10,15 @@ class ProfessorAssignmentCard extends Component {
 
   render() {
     const { assignments } = this.props;
+    console.log(assignments);
     const { courseId } = this.props;
     return (
       <React.Fragment>
         <div className="container">
           <div className="row">
             <h3 style={{ marginTop: "4rem" }}>
-              There are {assignments.length} assignments!
+              {//There are assignments.length assignments!
+              }
             </h3>
           </div>
           <div className="row" style={{ marginTop: "4rem" }}>
