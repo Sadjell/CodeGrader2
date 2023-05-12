@@ -5,21 +5,11 @@ var passportLocalMongoose = require("passport-local-mongoose");
 // Professor Schema w/ three properties
 var professorSchema = new Schema(
   {
-    name: {
-      type: String,
-      required: true,
-    },
-    _coursesId: {
-      type: [String],
-      required: false,
-    },
-    admin: {
-      //true or false for admin
-      type: Boolean,
-      default: true,
-    },
+    name: {type: String, required: true},
+    coursesId: {type: [String], required: false},
+    isAdmin: {type: Boolean, default: true,}
   },
-  { timestamps: true }
+  //{ timestamps: true }
 );
 
 // Export schema as a model

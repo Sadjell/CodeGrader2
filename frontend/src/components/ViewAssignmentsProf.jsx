@@ -4,6 +4,8 @@
 // TO-DO: hrefs (all navigations)
 // TO-DO: professor view course requests from student
 import React, { useEffect, useState } from "react";
+import {Card} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import {
   getCourse,
   deleteCourse,
@@ -16,10 +18,11 @@ import {
   getAssignments,
   deleteAssignment,
   saveAssignment,
+  getAssignmentsByCourseId
 } from "../services/assignmentService";
 import { useParams } from "react-router-dom";
 import Joi from "joi";
-import ProfessorNavbar from "./ProfessorNavbar";
+import ProfessorNavbar from "./ProfNavbar";
 import ProfessorAssignmentCard from "./professorAssignmentCard";
 import { Link } from "react-router-dom";
 
@@ -28,6 +31,11 @@ const ProfessorAssignmentView = () => {
   const [course, setCourse] = useState([]);
   const [assignmentIds, setAssignmentIds] = useState([]);
   const [assignments, setAssignments] = useState([]);
+  const [assignmentsHTML, setAssignmentsHTML] = useState(null);
+
+  useEffect(() => {
+    loadAssignments(assignments);
+  }, [assignments])
 
   useEffect(() => {
     //gets the course by id
@@ -36,6 +44,11 @@ const ProfessorAssignmentView = () => {
       console.log(data);
       setCourse(data);
     }
+
+    getAssignmentsByCourseId(localStorage.getItem("currentCourseId")).then((assignmentsIds) => {
+      setAssignmentIds(assignments.data);
+
+    });
 
     //gets the assignment ids from the course
     async function fetchAssignIdData() {
@@ -54,8 +67,8 @@ const ProfessorAssignmentView = () => {
       });
     }
 
-    fetchData();
-    fetchAssignIdData();
+    //fetchData();
+    //fetchAssignIdData();
     //fetchAssignments();
   }, []);
   assignmentIds.forEach((id) => {
@@ -64,6 +77,34 @@ const ProfessorAssignmentView = () => {
     console.log(data);
     assignments.push(data);
   });
+
+
+  const loadAssignments = (assignmenList) => {
+    if (assignmenList === null) {
+      return null;
+    }
+    setAssignmentsHTML(
+      assignmenList.map((assignment, index) => {
+        return(
+          <div className="container" key={index}>
+            <div className="row" style={{paddingTop: "1%"}}>
+              <Card id='card2' className="text-center mx-auto" style={{ background: '#D3D3D3', width: '60rem', margin:'5px', color:'whitesmoke', fontFamily: 'Bitter'}}>
+                <Card.Body>
+                  <Card.Title style={{fontSize:'30px'}}>
+                    <Button name={index} onClick={() =>{
+                      //localStorage.setItem("currentIntakeId", intake._id);
+                    } } variant='outline-dark' size='lg' style={{width: "350px", fontSize: "28px"}}>{assignment.name}</Button>
+                  </Card.Title>
+                </Card.Body>
+              </Card>
+            </div>
+          </div>
+        )
+      }
+    ))
+    
+
+  }
 
   // if (assignmentIds.length != 0) {
   //   //   let ids = [];
@@ -94,15 +135,25 @@ const ProfessorAssignmentView = () => {
   };
 
   return (
-    <React.Fragment>
-      <ProfessorNavbar />
-      <h1>This is: {courseId}</h1>
-      <ProfessorAssignmentCard
-        assignments={assignments}
-        courseId={courseId}
-        onDelete={handleDelete}
-      />
-    </React.Fragment>
+
+    <div className="intake-wrapper">
+    {/* Navbar */}
+    <div>
+    <ProfessorNavbar /></div>
+  {/* Jumbotron */}
+  <div className='p-5 text-center' style={{backgroundColor: '#6E9A35'}}>
+    <h1 className='mb-3' style={{fontFamily: 'Bitter', color:'whitesmoke'}}>Approved Intakes</h1>
+  </div>
+
+    <div className="intake-body container" style={{paddingTop: "1%"}}>
+      {assignmentsHTML}       
+    </div>
+  </div>
+    
+
+   
   );
 };
 export default ProfessorAssignmentView;
+
+

@@ -3,16 +3,8 @@ var Schema = mongoose.Schema;
 
 // Admin Schema w/ three properties
 var userSchema = new Schema({
-    studentId : { 
-            type : [String],
-            required: false,
-            unique : true
-            },
-    professorId : {
-            type : [String],
-            required : false,
-            unique : true
-    }
+    studentId : { type : [String],required: false, unique : true},
+    professorId : {type : [String],required : false,unique : true}
 },
     { timestamps : true 
 

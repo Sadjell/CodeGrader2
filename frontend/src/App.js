@@ -6,7 +6,7 @@ import LoginForm from "./components/LoginFormProfessor";
 import ProfessorCourses from "./components/ProfessorCourses";
 import AddCourse from "./components/AddCourse";
 import ProfessorAssignmentView from "./components/ProfessorAssignmentView";
-import AddAssignment from "./components/AddAssignment";
+import AddAssignment from "./components/AddAssignmentView";
 import AddStudent from "./components/AddStudent";
 import StudentAssignmentView from "./components/StudentAssignmentView";
 import AddSubmission from "./components/AddSubmission";
@@ -32,6 +32,7 @@ function App() {
           element={<AddAssignment />}
         />
         <Route path="/addStudent" element={<AddStudent />} />
+        <Route path="/profAssignmentView" element={<ProfessorAssignmentView />} />
         <Route
           path="/professorCourses/:courseId"
           element={<ProfessorAssignmentView />}

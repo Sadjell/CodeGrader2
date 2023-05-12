@@ -18,6 +18,12 @@ export function getAssignments() {
   return http.get(apiEndpoint);
 }
 
+// Get Curriculum by IntakeId
+export function getAssignmentsByCourseId(courseId) {
+  http.setJwt(getJwt());
+  return http.get(`${apiUrl}/get-assignments/${courseId}`);
+}
+
 export function getAssignment(assignmentId) {
   //gets assignment by id
   http.setJwt(getJwt());

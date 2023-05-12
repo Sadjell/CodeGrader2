@@ -6,6 +6,7 @@ var coursesRouter = express.Router();
 const mongoose = require("mongoose");
 const courses = require("../models/courses");
 const assignments = require("../models/assignments");
+const Assignment = require("../models/assignments");
 
 coursesRouter
   .route("/")
@@ -83,6 +84,21 @@ coursesRouter
       res.json(course._assignmentsId);
     });
   });
+
+
+  // Get Curriculum by IntakeID
+coursesRouter.get("/get-assignments/:courseId", async (req, res) => {
+  const courseId = req.params.courseId;
+  try {
+      const course = await courses.findById(courseId);
+      const assignments = await Assignment.findById(course._assignmentsId);
+
+      res.status(200).send(assignments);
+
+  } catch (err) {
+      res.status(500).json(err);
+  }
+});
 
 coursesRouter
   .route("/:courseId/assignments/:assignmentId") //router to access specific assignments in a course

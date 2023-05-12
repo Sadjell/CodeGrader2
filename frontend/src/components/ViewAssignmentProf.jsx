@@ -6,6 +6,7 @@ class ProfessorAssignmentCard extends Component {
     super(props);
   }
   state = {};
+  
 
   render() {
     const { assignments } = this.props;

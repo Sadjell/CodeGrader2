@@ -1,35 +1,16 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-// Course Schema w/ one property
 var courseSchema = new Schema(
   {
-    courseName: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    courseTitle: {
-      type: String,
-      required: true,
-    },
-    _assignmentsId: {
-      type: [String],
-      required: false,
-    },
-    _studentsId: {
-      type: [String],
-      required: false,
-    },
-    _professorId: {
-      type: String,
-      required: true,
-    },
+    name: {type: String, required: true,unique: true},
+    title: {type: String, required: true},
+    assignmentsId: [{ type: mongoose.Schema.Types.ObjectId, ref: 'assignments', required: false}],
+    studentsId: {type: [String], required: false},
+    professorId: {type: String, required: true},
   },
-  { timestamps: true }
+ 
 );
-
-// Export schema as a model
 var Course = mongoose.model("Course", courseSchema);
 
 module.exports = Course;

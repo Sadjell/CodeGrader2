@@ -31,9 +31,16 @@ class ProfessorCourseCard extends Component {
                     <h4 className="card-text">{course.courseTitle}</h4>
                   </div>
                   <div className="card-body">
-                    <Link to={`/professorCourses/${course._id}`}>
+                    <Link to={`/profAssignmentView`}>
                       <button
-                        onClick={() => ""}
+                        onClick={() => {
+                          localStorage.setItem("currentCourseId", course._id)
+
+                         
+                        }
+                          
+                         
+                        }
                         className="btn btn-primary"
                         style={{ marginLeft: "1rem" }}
                       >

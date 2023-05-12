@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ProfessorNavbar from "./ProfessorNavbar";
+import ProfessorNavbar from "./ProfNavbar";
 import { NavLink } from "react-router-dom";
 
 class AddAssignment extends Component {
