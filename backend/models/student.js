@@ -7,14 +7,13 @@ var studentSchema = new Schema(
   {
     name: {type: String, required: true},
     email: {type: String,required: true,unique: true},
-    password: {type: String,required: true,unique: true,},
-    coursesId: {type: [String],required: false,},
+    coursesId: {type: [mongoose.Schema.Types.ObjectId],required: false,},
     admin: {type: Boolean, default: false,},
   },
-  { timestamps: true }
+  //{ timestamps: true }
 );
 
 
-studentSchema.plugin(passportLocalMongoose);
+studentSchema.plugin(passportLocalMongoose, { usernameField: "email" });
 
 module.exports = mongoose.model("Student", studentSchema);

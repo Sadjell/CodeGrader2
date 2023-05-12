@@ -4,8 +4,7 @@ var Schema = mongoose.Schema;
 // Submission Schema w/ four properties
 var submissionSchema = new Schema(
   {
-    assignmentId: {type: String,required: true,
-    },
+    assignmentId: {type: String,required: true},
     studentId: {type: String,required: true,unique: true},
     grade: {type: String,required: false},
     files: {type: [String],required: false},
