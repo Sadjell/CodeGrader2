@@ -34,11 +34,7 @@ class StudentNavbar extends Component {
                 View Courses
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/requestCourse">
-                Request Course
-              </NavLink>
-            </li>
+
             <li className="nav-item">
               <NavLink
                 className="nav-link"

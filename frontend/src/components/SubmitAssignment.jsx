@@ -3,7 +3,7 @@
 // TO-Do: implement file upload
 import React, { Component } from "react";
 import Joi from "joi";
-import ProfessorNavbar from "./ProfessorNavbar";
+import ProfessorNavbar from "./ProfNavbar";
 
 class AddSubmission extends Component {
   constructor(props) {

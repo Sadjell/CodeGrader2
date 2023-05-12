@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Joi from "joi";
-import StudentNavbar from "./StudentNavbar";
-import ProfessorNavbar from "./ProfessorNavbar";
+import StudentNavbar from "./StudNavbar";
+import ProfessorNavbar from "./ProfNavbar";
 
 class ProfessorSubmissionView extends Component {
   constructor(props) {

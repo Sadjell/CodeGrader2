@@ -2,21 +2,21 @@ import logo from "./logo.svg";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import UserRoles from "./components/UserRoles";
-import LoginForm from "./components/LoginFormProfessor";
-import ProfessorCourses from "./components/ProfessorCourses";
-import AddCourse from "./components/AddCourse";
-import ProfessorAssignmentView from "./components/ProfessorAssignmentView";
+//import LoginForm from "./components/LoginProf";
+import ProfessorCourses from "./components/ViewCoursesProf";
+import AddCourse from "./components/AddCourseView";
+import ProfessorAssignmentView from "./components/ViewAssignmentProf";
 import AddAssignment from "./components/AddAssignmentView";
-import AddStudent from "./components/AddStudent";
-import StudentAssignmentView from "./components/StudentAssignmentView";
-import AddSubmission from "./components/AddSubmission";
-import StudentSubmissionView from "./components/StudentSubmissionView";
-import ProfessorSubmissionView from "./components/ProfessorSubmissionView";
-import StudentCourses from "./components/StudentCourses";
-import StudentRequestCourse from "./components/StudentRequestCourse";
+import AddStudent from "./components/AddStudentView";
+import StudentAssignmentView from "./components/ViewAssignmentStud";
+import AddSubmission from "./components/SubmitAssignment";
+import StudentSubmissionView from "./components/SubmissionViewStud";
+import ProfessorSubmissionView from "./components/SubmissionViewProf";
+import StudentCourses from "./components/ViewCoursesStud";
+//import StudentRequestCourse from "./components/StudentRequestCourse";
 import NoMatch from "./components/NoMatch.jsx";
-import LoginFormProfessor from "./components/LoginFormProfessor";
-import LoginFormStudent from "./components/LoginFormStudent";
+import LoginFormProfessor from "./components/LoginProf";
+import LoginFormStudent from "./components/LoginStud";
 import { getCourses } from "./services/courseService";
 
 //ToDo Refactor Router Paths, Include ids
@@ -45,7 +45,7 @@ function App() {
           element={<ProfessorSubmissionView />}
         />
 
-        <Route path="/requestCourse" element={<StudentRequestCourse />} />
+        
 
         <Route path="/studentCourses" element={<StudentCourses />} />
         <Route
@@ -63,7 +63,7 @@ function App() {
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </div>
-  );
+  ); //<Route path="/requestCourse" element={<StudentRequestCourse />} />
 }
 
 export default App;

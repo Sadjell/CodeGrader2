@@ -1,7 +1,7 @@
 //TO-DO: get rid of overlapping background image
 import React, {Component} from 'react';
 import Joi from 'joi';
-import StudentNavbar from './StudentNavbar';
+import StudentNavbar from './StudNavbar';
 
 class StudentAssignmentSubmitted extends Component {
     constructor(props) {
