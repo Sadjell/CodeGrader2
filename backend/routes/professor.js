@@ -1,9 +1,8 @@
 var express = require("express");
 var professorRouter = express.Router();
 var passport = require("passport");
-var Verify = require("./verify"); // verfication
+var Verify = require("./verify");
 const bcrypt = require("bcrypt");
-/** 1- declare mongoose and courses **/
 const mongoose = require("mongoose");
 const Professor = require("../models/professor");
 const Courses = require("../models/courses");
@@ -15,15 +14,12 @@ professorRouter
     next();
   })
   .get((req, res, next) => {
-    //chained into route(), no semi-colon after the all implementation
-    // 2- implement get to return all professors
     Professor.find({}, (err, professors) => {
       if (err) throw err;
 
       res.json(professors);
     });
   });
-//GOOD
 professorRouter.post("/register", async function (req, res) {
   console.log(req.body);
   Professor.register(
@@ -47,7 +43,6 @@ professorRouter.post("/register", async function (req, res) {
 });
 // 4- professor login
 professorRouter.post("/login", (req, res, next) => {
-  //req.body will have username and password
   console.log(req.body);
   passport.authenticate("local", function (err, professor, info) {
     console.log("authentication");
@@ -78,14 +73,12 @@ professorRouter.post("/login", (req, res, next) => {
           var token = Verify.getToken(dbProfessor);
           res.status(200);
           res.send(token);
-          //res.header("Auth", token);
         }
       );
     });
   })(req, res, next);
 });
 
-// 5- implementing logout
 professorRouter.get("/logout", function (req, res) {
   req.logout();
   res.status(200).json({
@@ -95,8 +88,7 @@ professorRouter.get("/logout", function (req, res) {
 
 professorRouter
   .route("/:professorId")
-  .get((req, res, next) => {//GOOD
-    // 4- find by id
+  .get((req, res, next) => {
     Professor.findById(`${req.params.professorId}`, (err, professor) => {
       if (err) throw err;
       res.json(professor);
@@ -104,8 +96,6 @@ professorRouter
   })
 
   .put((req, res, next) => {
-    // 5- implement post request to update a specific professor
-    //This replaces everything about a professor, perhaps make it more specific in the future
     Professor.findByIdAndUpdate(
       `${req.params.professorId}`,
       { $set: req.body },
@@ -117,8 +107,7 @@ professorRouter
     );
   })
 
-  .delete((req, res, next) => {//GOOD
-    // 6- delete specific course in the collection
+  .delete((req, res, next) => {
     Professor.findByIdAndRemove(`${req.params.professorId}`, (err, professor) => {
       if (err) throw err;
       res.json(professor);
@@ -128,14 +117,12 @@ professorRouter
 professorRouter.route("/:professorId/courses").get((req, res, next) => {
   Professor.findById(`${req.params.professorId}`, (err, professor) => {
     if (err) throw err;
-    //return the ids of all the courses the professor is in
     res.json(professor.coursesId);
   });
 });
 
 professorRouter
   .route("/:professorId/courses/:courseId")
-  //add a new course id to the list of course ids a professor is in
   .put((req, res, next) => {
     Professor.findById(`${req.params.professorId}`, (err, professor) => {
       if (err) throw err;
@@ -148,7 +135,6 @@ professorRouter
     });
   })
 
-  //remove a specific course id from the list of ids
   .delete((req, res, next) => {
     Professor.findById(`${req.params.professorId}`, (err, professor) => {
       if (err) throw err;

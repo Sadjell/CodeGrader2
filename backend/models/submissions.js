@@ -1,7 +1,6 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-// Submission Schema w/ four properties
 var submissionSchema = new Schema(
   {
     assignmentId: {type: String,required: true},
@@ -13,7 +12,5 @@ var submissionSchema = new Schema(
   { timestamps: true }
 );
 
-// Export schema as a model
 var Submission = mongoose.model("Submission", submissionSchema);
-
 module.exports = Submission;

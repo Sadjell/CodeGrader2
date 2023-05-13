@@ -31,14 +31,14 @@ studentRouter
     });
   });*/
 
-  studentRouter.get("/", Verify.verifyAdmin, function (req, res, next) {
+  /*studentRouter.get("/", Verify.verifyAdmin, function (req, res, next) {
   Student.find({}, function (err, students) {
     if (err) {
       throw err;
     }
     res.json(students);
   });
-});
+});*/
 // 3- register a new Student on end poitn register, info is sent as a json object
 studentRouter.post("/register", async function (req, res) {
   Student.register(
